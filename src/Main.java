@@ -25,7 +25,8 @@ public class Main {
                     "\n4. Delete Your Profile" +
                     "\n5. Buy Your Ticket" +
                     "\n6. Cancel Your Ticket" +
-                    "\n7. Exit");
+                    "\n7. Show Your Ticket" +
+                    "\n8. Exit");
             System.out.print("Enter your choice: ");
             int ch = sc.nextInt();
 
@@ -72,7 +73,6 @@ public class Main {
                     dao.deleteUser(id);
                 }
                 case 5 -> {
-                    Ticket ticket = new Ticket();
                     System.out.print("Enter User ID: ");
                     id = sc.nextInt();
                     sc.nextLine(); // Consume newline
@@ -81,12 +81,9 @@ public class Main {
                     System.out.print("Enter destination place: ");
                     String destination = sc.nextLine();
 
-                    ticket.setUserId(id);
-                    ticket.setDeparture(departure);
-                    ticket.setDestination(destination);
-
-                    obj.buyTicket(ticket);
+                    obj.buyTicket(id, departure, destination);
                 }
+
 
                 case 6 -> {
                     System.out.print("Enter User ID to cancel ticket: ");
@@ -95,8 +92,14 @@ public class Main {
                     ticketId = sc.nextInt();
                     obj.cancelTicket(id, ticketId);
                 }
+                case 7 -> {
+                    System.out.print("Enter Ticket ID to view details: ");
+                    ticketId = sc.nextInt();
+                    obj.showTicket(ticketId);
+                }
 
-                case  7-> {
+
+                case  8-> {
                     System.out.println("Thank you for using the Online Ticket Booking Application!");
                     System.exit(0);
                 }

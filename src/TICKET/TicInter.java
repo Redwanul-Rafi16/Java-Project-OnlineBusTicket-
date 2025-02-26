@@ -1,6 +1,8 @@
 package TICKET;
 
 public interface TicInter {
-    void buyTicket(Ticket ticket); // Modified to take a `Ticket` object
+    void buyTicket(int userId, String departure, String destination);
     void cancelTicket(int userId, int ticketId);
+    void showTicket(int ticketId);
 }
+

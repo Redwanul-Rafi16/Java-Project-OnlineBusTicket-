@@ -50,21 +50,27 @@ public class Userdaoimp implements UserDaointer {
 
     @Override
     public void updateUser(int id, String name, String phone, String address) {
-        String query = "UPDATE user_profiles SET name = ? SET phone = ? SET address = ? WHERE id = ?";
+        String query = "UPDATE user_profiles SET name = ?, phone = ?, address = ? WHERE id = ?";
         try {
             PreparedStatement pstm = con.prepareStatement(query);
             pstm.setString(1, name);
-            pstm.setInt(2, id);
-            pstm.setString(3, phone);
-            pstm.setString(4, address);
+            pstm.setString(2, phone);
+            pstm.setString(3, address);
+
+
+            pstm.setInt(4, id);
             int cnt = pstm.executeUpdate();
+
             if (cnt > 0) {
-                System.out.println("Your profile updated successfully!");
+                System.out.println("Profile updated successfully!");
+            } else {
+                System.out.println("Profile update failed. User not found.");
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
 
     @Override
     public void deleteUser(int id) {
